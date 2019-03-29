@@ -2,18 +2,18 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-app.use(express.static('public'));
+app.use(express.static('client/public'));
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/client/index.html');
 });
 
 app.get('/chat', function (req, res) {
-  res.sendFile(__dirname + '/chat.html');
+  res.sendFile(__dirname + '/client/chat.html');
 })
 
 app.get('/game', function (req, res) {
-  res.sendFile(__dirname + '/game.html');
+  res.sendFile(__dirname + '/client/game.html');
 })
 
 io.on('connection', function(socket){
