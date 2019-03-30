@@ -2,15 +2,19 @@ function drawHexagon(center, dim, ctx) {
     prev = new Position(0,0);
     curr = new Position(center.x,center.y+dim);
     vertexPos = [90,150,210,270,330,30];
+    ctx.beginPath();
+    ctx.moveTo(curr.x,curr.y);
     for(i=1; i <= 6; i++){
         prev.x = curr.x;
         prev.y = curr.y;
         curr.x = center.x + dim * Math.cos(vertexPos[i%6] * Math.PI / 180), 
         curr.y = center.y + dim * Math.sin(vertexPos[i%6] * Math.PI / 180);
-        ctx.moveTo(prev.x,prev.y);
+        //ctx.moveTo(prev.x,prev.y);
         ctx.lineTo(curr.x,curr.y);
         ctx.stroke();
     }   // The function returns the product of p1 and p2
+    ctx.fillStyle = "red";
+    ctx.fill();
   }
 
 function drawBoard(windowHeight, windowWidth, ctx) {
