@@ -9,7 +9,6 @@ function drawHexagon(center, dim, ctx) {
         prev.y = curr.y;
         curr.x = center.x + dim * Math.cos(vertexPos[i%6] * Math.PI / 180), 
         curr.y = center.y + dim * Math.sin(vertexPos[i%6] * Math.PI / 180);
-        //ctx.moveTo(prev.x,prev.y);
         ctx.lineTo(curr.x,curr.y);
         ctx.stroke();
     }   // The function returns the product of p1 and p2
@@ -18,11 +17,16 @@ function drawHexagon(center, dim, ctx) {
   }
 
 function drawBoard(windowHeight, windowWidth, ctx) {
-    heightOfTile = (windowHeight * 0.95) / 5;
+    centerOfWindow = new Position(windowWidth/2,windowHeight/2);
+    heightOfTile = (windowHeight) / 5;
     centerToVertex = heightOfTile / 2;
     xSpace = 2 * centerToVertex * Math.cos(30 * Math.PI / 180);
     ySpace = centerToVertex + centerToVertex * Math.sin(30 * Math.PI / 180);
-    center = new Position(300,100);
+    center = new Position(0,0);
+    center.x = centerOfWindow.x - xSpace;
+    center.y = centerOfWindow.y - 2 * ySpace;
+    // center is will be the center of each hexagon separately,
+    // it starts at the center of the top left one
     currCenter = new Position(center.x,center.y);
     tilePerRow = [3,4,5,4,3];
     for(var row=0; row < 5; row++){
